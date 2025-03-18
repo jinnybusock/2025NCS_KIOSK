@@ -1,7 +1,7 @@
 # 1) Ice Americano : 2000 2) Latte : 3000
 drinks= ["Ice Americano", "Latte"]
-prices= [2000, 3000]
-amounts= [0, 0]
+prices= [2000, 3000, 4900]
+amounts= [0, 0, 0]
 total_price= 0
 # order_list= ''
 
@@ -27,6 +27,13 @@ while True:
         print(f"{menu} menu is not existed. Please try again.")
 
 # print(order_list)
-print(f"{drinks[0]} {prices[0]} x {amounts[0]} {prices[0]* amounts[0]}")
-print(f"{drinks[1]} {prices[1]} x {amounts[1]} {prices[0]* amounts[1]}")
+# print(f"{drinks[0]} {prices[0]} x {amounts[0]} {prices[0]* amounts[0]}")
+# print(f"{drinks[1]} {prices[1]} x {amounts[1]} {prices[0]* amounts[1]}")
+# print(f"{drinks[2]} {prices[2]} x {amounts[2]} {prices[2]* amounts[2]}")
+
+print("Product Price Amount Subtotal")
+
+for i in range(len(drinks)):
+    print(f"{drinks[i]} {prices[i]} x {amounts[i]} {prices[i] * amounts[i]}")
+
 print(f"Total price : {total_price}")
