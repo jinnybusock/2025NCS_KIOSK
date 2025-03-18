@@ -1,6 +1,6 @@
 drinks= ["Ice Americano", "Latte"]
 prices= [2000, 3000]
-amounts= [0, 0]
+amounts= [0 for _ in range(len(drinks))]
 total_price= 0
 menu_lists= ""
 
