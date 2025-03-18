@@ -3,37 +3,41 @@ drinks= ["Ice Americano", "Latte"]
 prices= [2000, 3000, 4900]
 amounts= [0, 0, 0]
 total_price= 0
-# order_list= ''
+menu_lists= ""
+for k in range(len(drinks)):
+    menu_lists+= f"{k+1}) {drinks[k]} {prices[k]} won "
+
+menu_lists+= f"{len(drinks)+ 1}) Exit: "
 
 while True:
-    menu = input(f"1) {drinks[0]} {prices[0]} 2) {drinks[1]} {prices[1]}  3) Exit : ")
-
+    # menu = input(f"1) {drinks[0]} {prices[0]} 2) {drinks[1]} {prices[1]} 3) {drinks[2]} {prices[2]}  4) Exit : ")
+    menu= input(menu_lists)
     if menu== "1":
         print(f"You ordered {drinks[0]}! Price : {prices[0]} won. Thank you")
         total_price=total_price+ prices[0]
-        # order_list+= drinks[0]+ '\n'
         amounts[0]= amounts[0]+ 1
 
     elif menu== "2":
         print(f"You ordered {drinks[1]}! Price : {prices[1]} won. Thank you")
         total_price =total_price+ prices[1]
-        # order_list += drinks[1]+ '\n'
         amounts[1]= amounts[1]+ 1
 
-    elif menu == "3":
+    elif menu== "3":
+        print(f"You ordered {drinks[2]}! Price : {prices[2]} won. Thank you")
+        total_price =total_price+ prices[2]
+        amounts[2]= amounts[2]+ 1
+
+    elif menu == "4":
         print("You finish order")
         break
+
     else:
         print(f"{menu} menu is not existed. Please try again.")
-
-# print(order_list)
-# print(f"{drinks[0]} {prices[0]} x {amounts[0]} {prices[0]* amounts[0]}")
-# print(f"{drinks[1]} {prices[1]} x {amounts[1]} {prices[0]* amounts[1]}")
-# print(f"{drinks[2]} {prices[2]} x {amounts[2]} {prices[2]* amounts[2]}")
 
 print("Product Price Amount Subtotal")
 
 for i in range(len(drinks)):
-    print(f"{drinks[i]} {prices[i]} x {amounts[i]} {prices[i] * amounts[i]}")
+    if amounts[i] > 0:
+        print(f"{drinks[i]} {prices[i]} x {amounts[i]} {prices[i] * amounts[i]}")
 
 print(f"Total price : {total_price}")
