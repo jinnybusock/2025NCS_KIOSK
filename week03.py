@@ -11,6 +11,10 @@ total_price= 0
 #menu_lists= ""
 
 def order_process(idx: int):
+    """
+    음료 주문 디스플레이 및 누적금액 계산과 수량 처리 함수
+    :param idx: list's index num
+    """
     global total_price
     print(f"You ordered {drinks[idx]}! Price : {prices[idx]} won. Thank you")
     total_price = total_price + prices[idx]
@@ -18,6 +22,10 @@ def order_process(idx: int):
 
 menu_lists= " ".join([f"{k+1}) {drinks[k]} {prices[k]} won " for k in range(len(drinks))])
 menu_lists+= f"{len(drinks)+ 1}) Exit: "
+
+# help(abs)
+# help(len)
+help(order_process)
 
 while True:
     menu= int(input(menu_lists))
