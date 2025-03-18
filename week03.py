@@ -1,31 +1,30 @@
-# 1) Ice Americano : 2000 2) Latte : 3000
-drinks= ["Ice Americano", "Latte"]
+drinks= ["Ice Americano", "Latte", "Watermelon juice"]
 prices= [2000, 3000, 4900]
 amounts= [0, 0, 0]
 total_price= 0
 menu_lists= ""
+
+def order_process(idx: int):
+    global total_price
+    print(f"You ordered {drinks[idx]}! Price : {prices[idx]} won. Thank you")
+    total_price = total_price + prices[idx]
+    amounts[idx] = amounts[idx] + 1
+
 for k in range(len(drinks)):
     menu_lists+= f"{k+1}) {drinks[k]} {prices[k]} won "
 
 menu_lists+= f"{len(drinks)+ 1}) Exit: "
 
 while True:
-    # menu = input(f"1) {drinks[0]} {prices[0]} 2) {drinks[1]} {prices[1]} 3) {drinks[2]} {prices[2]}  4) Exit : ")
     menu= input(menu_lists)
     if menu== "1":
-        print(f"You ordered {drinks[0]}! Price : {prices[0]} won. Thank you")
-        total_price=total_price+ prices[0]
-        amounts[0]= amounts[0]+ 1
+        order_process(int(menu)- 1)
 
     elif menu== "2":
-        print(f"You ordered {drinks[1]}! Price : {prices[1]} won. Thank you")
-        total_price =total_price+ prices[1]
-        amounts[1]= amounts[1]+ 1
+        order_process(int(menu) - 1)
 
     elif menu== "3":
-        print(f"You ordered {drinks[2]}! Price : {prices[2]} won. Thank you")
-        total_price =total_price+ prices[2]
-        amounts[2]= amounts[2]+ 1
+        order_process(int(menu)- 1)
 
     elif menu == "4":
         print("You finish order")
