@@ -2,9 +2,7 @@ drinks= ["Ice Americano", "Latte"]
 prices= [2000, 3000]
 # amounts= [0, 0]
 amounts= [0]* len(drinks)
-
 total_price= 0
-menu_lists= ""
 
 #drinks= ["Ice Americano", "Latte", "Watermelon juice"]
 #prices= [2000, 3000, 4900]
@@ -18,9 +16,7 @@ def order_process(idx: int):
     total_price = total_price + prices[idx]
     amounts[idx] = amounts[idx] + 1
 
-for k in range(len(drinks)):
-    menu_lists+= f"{k+1}) {drinks[k]} {prices[k]} won "
-
+menu_lists= " ".join([f"{k+1}) {drinks[k]} {prices[k]} won " for k in range(len(drinks))])
 menu_lists+= f"{len(drinks)+ 1}) Exit: "
 
 while True:
