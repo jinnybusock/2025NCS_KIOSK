@@ -25,7 +25,7 @@ menu_lists+= f"{len(drinks)+ 1}) Exit: "
 
 # help(abs)
 # help(len)
-help(order_process)
+# help(order_process)
 
 while True:
     menu= int(input(menu_lists))
