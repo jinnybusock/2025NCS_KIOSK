@@ -20,12 +20,12 @@ def one_to_n_loop(n):
         result+= i
     return result
 
-@time_measure_decorator
 def ont_to_n_math(n):
     r= n* (n+1) //2
     return r
 
 number= int(input("정수 입력: "))
-
+func= time_measure_decorator(ont_to_n_math)
+print(func(number))
 print(one_to_n_loop(number))
-print(ont_to_n_math(number))
+# print(ont_to_n_math(number))
