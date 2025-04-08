@@ -90,7 +90,7 @@ class OrderProcessor:
 
     def print_receipt(self, menu: Menu) -> None:
         """Print order summary and final price with formatted alignment using f-string"""
-        print(f"\n{'Product':<15} {'Price':<10} {'Amount':<10} {'Subtotal':<10}")
+        print(f"\n{'Product':<15} {'Price':<10} {'Amount':<10} {'Subtotal':<10}won")
         print("-" * 50)
 
         for i in range(menu.get_menu_length()):
@@ -113,6 +113,20 @@ class OrderProcessor:
             print(f"{'No discount applied.':<30}")
             print(f"{'Total price:':<30} {self.total_price:>5}")
 
+    def get_next_ticket_num(self) -> int:
+        """
+        Produce ticket num funct.
+        :return: next ticket num
+        """
+        with open("ticket_number.txt", "r") as fp:
+            number= int(fp.read())
+        number= number+1
+
+        with open("ticket_number.txt", "w") as fp:
+            fp.write(number)
+
+        return number
+
     def run(self, menu: Menu):
         """Execute the order system"""
         self.amounts = [0] * menu.get_menu_length() # run 시점에 메뉴 길이에 맞춰 초기화
@@ -134,3 +148,6 @@ class OrderProcessor:
                 print(e)  # Display the specific IndexError message
 
         self.print_receipt(menu)
+
+        print(f"Queue number ticket : {self.get_next_ticket_num()}")
+        self.get_next_ticket_num()
