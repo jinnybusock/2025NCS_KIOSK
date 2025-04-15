@@ -155,3 +155,7 @@ class OrderProcessor:
 
         print(f"Queue number ticket : {self.get_next_ticket_num()}")
         self.get_next_ticket_num()
+
+    def __del__(self):
+        # db connection close .....
+        print('End program')
