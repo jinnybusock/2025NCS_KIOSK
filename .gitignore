@@ -6,8 +6,7 @@ inha.txt
 temp.py
 mymodule.py
 *.exe
-temp.db
-test.db-journal
+*.db
 
 # User-specific stuff
 .idea/**/workspace.xml
