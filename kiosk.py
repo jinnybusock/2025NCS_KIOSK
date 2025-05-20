@@ -296,6 +296,7 @@ class KioskGUI:
         """
         self.order_processor.process_order(idx)
         self.update_order_display()
+        self.update_weather_info()
 
     def update_order_display(self) -> None:
         """Update the order summary in the text widget"""
