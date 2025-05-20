@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import sqlite3
 from typing import List
-
+import datetime
+import requests
 
 class Menu:
 
@@ -56,7 +57,6 @@ class Menu:
         :return: the length of the menu
         """
         return len(self.drinks)
-
 
 class OrderProcessor:
     """Processes cafe orders, applies discounts, and prints receipts."""
@@ -134,6 +134,8 @@ class OrderProcessor:
         else:
             receipt_text += f"{'No discount applied.':<30}\n"
             receipt_text += f"{'Total price:':<30} {self.total_price:>5} won\n"
+
+        receipt_text= receipt_text+ datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         return receipt_text
 
@@ -269,6 +271,19 @@ class KioskGUI:
         )
         exit_btn.grid(row=0, column=2, padx=5, pady=5)
 
+        # Weather Label
+        self.weather_label = tk.Label(
+            self.root,
+            text= "Loading weather information...",
+            font=("Arial", 12),
+            bg="#f0f0f0",
+            fg="#9E182B",
+            padx=10,
+            pady=5,
+
+        )
+        self.weather_label.grid(row=3, column= 0, columnspan= 2, pady=5)
+
         # Configure grid weights for responsiveness
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
@@ -368,3 +383,17 @@ class KioskGUI:
         """Exit the program"""
         if messagebox.askyesno("Exit", "Are you sure you want to exit?"):
             self.root.destroy()
+
+    def update_weather_info(self) -> None:
+        """Load weather data from 'wttr.in'"""
+        #url= "https://naver.com/HEEJINCHUN" -> status num= 404
+        #url= "https://wttrOMG.in" -> 웹사이트가 존재하지 않는 경우
+        url= "https://wttr.in/Incheon?format=4"
+        response= requests.get(url)
+
+        if response.status_code== 200:
+            weather_text= response.text.strip()
+            self.weather_label.config(text= f"Current weather: {weather_text}")
+
+        else:
+            self.weather_label.config(text= f"Weather information cannot be loaded")
