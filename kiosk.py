@@ -391,9 +391,15 @@ class KioskGUI:
         url= "https://wttr.in/Incheon?format=4"
         response= requests.get(url)
 
-        if response.status_code== 200:
+        try:
+            response= requests.get(url)
             weather_text= response.text.strip()
-            self.weather_label.config(text= f"Current weather: {weather_text}")
+            if response.status_code== 200:
+                self.weather_label.config(text= f"Current weather: {weather_text}")
 
-        else:
-            self.weather_label.config(text= f"Weather information cannot be loaded")
+            else:
+                self.weather_label.config(text= f"Weather information cannot be loaded")
+
+        except Exception as err:
+            self.weather_label.config(text= f"Weather information error")
+            print(err)
